@@ -1,0 +1,72 @@
+:root {
+  --bg: #1b2030;
+  --text: #e8e6df;
+  --muted: #a3abbf;
+  --accent: #8fb8a8;
+  --serif: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+  --sans: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  box-sizing: border-box;
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 1rem;
+  line-height: 1.55;
+  -webkit-text-size-adjust: 100%;
+}
+
+.start {
+  min-height: 100dvh;
+  max-width: 34rem;
+  margin: 0 auto;
+  padding: calc(2rem + env(safe-area-inset-top, 0px)) calc(1.5rem + env(safe-area-inset-right, 0px))
+    calc(2rem + env(safe-area-inset-bottom, 0px)) calc(1.5rem + env(safe-area-inset-left, 0px));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+}
+
+.start__mark {
+  color: var(--accent);
+  margin-bottom: 1.25rem;
+}
+
+.start__title {
+  margin: 0 0 0.75rem;
+  font-family: var(--serif);
+  font-size: clamp(2.5rem, 12vw, 3.75rem);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1.05;
+}
+
+.start__lead {
+  margin: 0 0 2rem;
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  line-height: 1.45;
+}
+
+.start__status {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9375rem;
+}
