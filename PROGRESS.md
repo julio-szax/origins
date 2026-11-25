@@ -1,100 +1,60 @@
 # PROGRESS — Estado do projeto
 
-**Fase atual:** Fase 0 concluída. Próxima: Fase 1 — Fundação jogável (a planejar e aprovar antes de iniciar).
-**Última atualização:** 24/11/2026.
+**Última atualização:** 24/11/2026
+**Fase atual:** Fase 0 concluída. Fase 1 planejada, **não iniciada**.
+**Sessão pausada** por limite de utilização; retomar do ponto indicado em "Continuidade".
 
-## Decisões consolidadas
-- Nome: ORIGINS. Sandbox com desafios opcionais.
-- Realismo/dificuldade híbridos e configuráveis por mundo.
-- Tempo híbrido; mundo pausa ao fechar o app por padrão.
-- Início da vida no nascimento; modos normal e observador; automações separadas.
-- Necessidades simplificadas/completas/desativadas.
-- Atributos e habilidades com evolução integrada; testes RPG para ações relevantes.
-- NPCs autônomos, memória, ecossistema social; simulação histórica profunda (fases futuras).
-- Mundo interconectado; começar por uma cidade.
-- Apresentação textual; exploração por listas/menus; painel central com abas.
-- Morte não encerra o mundo; Permadeath escolhido na criação e imutável.
-- Salvamento híbrido (IndexedDB), vários mundos, export/import planejados.
-- IA opcional e configurável; jogo independente dela.
-- Hospedagem: Vercel (HTTPS). Offline após primeiro carregamento. Sem backend no MVP.
-- Fase 0: desenvolvimento local primeiro; GitHub e deploy depois; validação no iPhone após deploy.
-- Atualização do service worker: versão nova aplicada na próxima abertura do app (provisório, reversível).
+## Fase 0 — Preparação técnica: CONCLUÍDA (24/11/2026)
+- Projeto React + TypeScript + Vite criado.
+- Repositório GitHub privado `origins`.
+- Deploy na Vercel (HTTPS) funcionando.
+- PWA instalado no iPhone pelo Safari.
+- App aberto offline (modo avião) com sucesso após instalação.
+- Desenvolvimento em Windows 11 (Node instalado nesta etapa).
+- Detalhes de lint/testes automatizados e lista de arquivos da Fase 0: não registrados nesta sessão; conferir no repositório e completar aqui.
 
-## Fase 0 — tarefas (todas concluídas)
-- [x] 1. Projeto base Vite + React + TS estrito
-- [x] 2. ESLint e script `lint` (o script `test` vem com o Vitest na tarefa 3)
-- [x] 3. Vitest com teste básico
-- [x] 4. Estrutura mínima e tela inicial mobile-first
-- [x] 5. PWA (manifest, ícones, service worker, meta tags iOS) — falta validar offline (tarefa 6) e instalação no iPhone (tarefa 7)
-- [x] 6. Verificação offline em preview local
-- [x] 7. Deploy na Vercel + validação no iPhone
-- [x] 8. README e fechamento da fase (a fase só fecha após a tarefa 7)
+## Decisões técnicas aprovadas
+- Stack: React, TypeScript (estrito), Vite, Lucide React, IndexedDB, PWA.
+- Hospedagem: Vercel, HTTPS desde o início.
+- Sem backend obrigatório no MVP; simulação local e offline após o carregamento inicial.
+- Desenvolvimento local primeiro; GitHub e Vercel após a estrutura inicial funcionar (feito).
+- Trabalho em etapas pequenas, com explicação breve de como executar comandos.
+- Motor independente de React e de IA; regras como funções puras testáveis; estado versionado e validado.
+- Mundo pausa ao fechar o app; sem avanço de tempo offline no MVP.
+
+## Fase 1 — Fundação jogável: PLANEJADA (não iniciada)
+Etapas (cada uma com testes e atualização deste arquivo):
+1. **Tipos e motor de tempo:** `World`, `Character`, `Calendar`, `Settings` com versão de esquema; calendário e relógio em funções puras; pausa e velocidades 1x/2x/5x/10x; testes.
+2. **Personagem e envelhecimento:** nascimento, idade derivada do calendário, fases da vida; criação manual, aleatória (com seed) ou parcial.
+3. **Personalidade inicial:** traços básicos, sem mudança ao longo da vida nesta fase.
+4. **Persistência:** IndexedDB com validação ao carregar, autosave periódico, salvamento manual, múltiplos mundos isolados; testes de interrupção na gravação.
+5. **Configurações por mundo:** presets Casual/Normal/Realista/Extremo e somente opções com efeito real nesta fase.
+6. **Interface mínima:** criar mundo, painel com data/idade/controles de tempo, lista de mundos, continuar após fechar e reabrir.
+
+**Fora do escopo:** IA, necessidades, economia, NPCs, história global.
+**Aceite (ROADMAP):** criar, jogar, fechar/reabrir e continuar um mundo; tempo e idade corretos; mundos sem estado compartilhado; testes de salvamento passam.
+
+## Decisões pendentes (aguardam o proprietário)
+1. **Velocidade do tempo em 1x (NÃO APROVADA; bloqueia a etapa 1).** Ao retomar, apresentar de novo esta decisão e defini-la ANTES de implementar o motor de tempo.
+   - Proposta A (Claude): 1x = 1 dia de jogo a cada 10 s reais (~1 ano de jogo por hora real).
+   - Proposta B (contraproposta do proprietário, preferência inicial): 1x = 1 h de jogo por minuto real; 2x = 2 h/min; 5x = 5 h/min; 10x = 10 h/min.
+   - Referência de cálculo da B: 1x ≈ 1 dia de jogo a cada 24 min reais (~6 dias reais por ano de jogo); 10x ≈ 1 dia a cada 2,4 min (~14,6 h reais por ano de jogo).
+   - Em ambos os casos o valor deve ficar em uma constante de configuração, fácil de alterar.
+2. **Permadeath na Fase 1.** Interpretação provisória: a opção é escolhida na criação do mundo e fica gravada como imutável, com a trava na camada de salvamento; efeitos da morte ficam para fases posteriores. Afeta salvamentos, então precisa de aprovação (ou adiar para outra fase).
+- Não especificadas e fora do escopo agora: cidade inicial, primeiro conjunto de profissões, provedor/modelo de IA, monetização.
+
+## Erros conhecidos
+Nenhum registrado.
+
+## Git / sincronização
+Não verificado pelo Claude: não há acesso ao repositório nesta sessão. Antes de encerrar, rodar no terminal do projeto:
+`git status` e `git log origin/main..HEAD` (ou `git status -sb`).
+Este PROGRESS.md precisa ser copiado para a raiz do repositório, com commit e push.
+
+## Continuidade
+- **Ponto exato:** plano da Fase 1 apresentado; nenhuma linha de código da Fase 1 escrita.
+- **Próxima tarefa:** responder à decisão pendente 1 (velocidade do tempo) e, se possível, à 2 (Permadeath); depois iniciar a **etapa 1 da Fase 1** (tipos e motor de tempo).
+- **Ao retomar:** ler `CLAUDE.md` e este arquivo; não repetir o planejamento.
 
 ## Registro de execução
-### 24/11/2026 — Fase 0, tarefa 1
-- Criado projeto com `npm create vite@latest origins -- --template react-ts` (React 19, Vite 8, TypeScript 7).
-- Alterado: `tsconfig.app.json` e `tsconfig.node.json` (adicionado `"strict": true`).
-- Testes: `npm run build` OK (com strict); servidor `vite` respondeu HTTP 200.
-- Observações: o template atual traz **oxlint** (script `lint`), não ESLint. Será tratado na tarefa 2. O conteúdo demo do template (logos, hero, CSS) ainda existe; será removido na tarefa 4.
-- Erros conhecidos: nenhum.
-
-### 24/11/2026 — Fase 0, tarefa 2
-- Removido `oxlint` e `.oxlintrc.json`. Adicionados `eslint`, `@eslint/js`, `typescript-eslint`, `eslint-plugin-react-hooks`, `globals`.
-- Criado `eslint.config.js` (recommended + `no-explicit-any` como erro + regras de hooks, que o oxlint cobria).
-- Alterado: `package.json` (script `lint` = `eslint .`).
-- **TypeScript rebaixado de 7.0 para ~6.0.3:** `typescript-eslint` (8.74) só suporta TS `<6.1`. Reversível: voltar ao TS 7 quando houver suporte.
-- Testes: `npm run lint` limpo; `npm run build` OK; confirmado que um `any` proposital é reportado como erro.
-- Erros conhecidos: nenhum.
-
-### 24/11/2026 — Fase 0, tarefa 3
-- Adicionados `vitest`, `jsdom`, `@testing-library/react`, `@testing-library/dom`.
-- Alterados: `vite.config.ts` (import de `vitest/config`, ambiente jsdom, `include` em `src/**/*.test.{ts,tsx}`), `package.json` (script `test` = `vitest run`).
-- Criado: `src/tests/app.test.tsx` (renderiza `App` e exige um `h1`).
-- Testes: `npm test` 1/1 passou; teste falha quando a expectativa é alterada (sensível); `lint` e `build` limpos.
-- Observação: o teste depende de `App` ter um `h1`; a tarefa 4 deve mantê-lo ou ajustar o teste.
-- Erros conhecidos: nenhum.
-
-### 24/11/2026 — Fase 0, tarefa 4
-- Adicionado `lucide-react`. Removido todo o conteúdo demo do template (logos, hero, CSS, `icons.svg`).
-- Criados: `src/app/{main.tsx,App.tsx,global.css}`, `src/components/StartScreen.tsx`. `main.tsx` e `App.tsx` movidos de `src/` para `src/app/`.
-- Alterados: `index.html` (pt-BR, `viewport-fit=cover`, `theme-color`, título ORIGINS, script em `/src/app/main.tsx`), `src/tests/app.test.tsx` (novo import).
-- Tela: texto escuro/mobile-first, sem botões e sem animações, sem fontes externas (offline). Texto declara que o jogo ainda não está disponível.
-- Testes: `lint` limpo; `npm test` 1/1; `build` OK; captura em 390x844 sem rolagem horizontal (scrollWidth = clientWidth = 390).
-- Desvio do plano: `types/` e `utils/` não foram criadas (ficariam vazias); serão criadas quando houver o primeiro uso.
-- Erros conhecidos: nenhum.
-
-### 24/11/2026 — Fase 0, tarefa 5
-- Adicionado `vite-plugin-pwa` (2.0.0). Configurado em `vite.config.ts`: manifest (ORIGINS, pt-BR, standalone, portrait, cores #1b2030), `registerType: 'prompt'` sem skipWaiting/clientsClaim automáticos (versão nova só entra na próxima abertura), precache de js/css/html/svg/png/manifest, `cleanupOutdatedCaches`.
-- Criados: `public/icons/{icon-192,icon-512,icon-maskable-512,apple-touch-icon}.png` (**provisórios**, broto Lucide sobre fundo do app, sem transparência); `public/favicon.svg` substituído.
-- Alterado: `index.html` (meta tags iOS: capable, status-bar `black-translucent`, título, `apple-touch-icon`).
-- Testes: `lint` limpo; `npm test` 1/1; `build` OK, gerou `sw.js`, `manifest.webmanifest`, precache de 16 entradas (245 KiB); `skipWaiting` só reage a mensagem `SKIP_WAITING` (não é automático).
-- **Não verificado ainda:** funcionamento offline real (tarefa 6) e instalação/offline no iPhone (tarefa 7). Comportamento exato da troca de versão no iOS só pode ser confirmado após o deploy.
-- Erros conhecidos: nenhum de funcionamento.
-- Aviso de dependência: `npm audit` reporta 4 vulnerabilidades moderadas em `glob`/`minimatch` via `workbox-build` (ferramenta de build, não vai para o app). `audit fix --force` sugere downgrade do plugin; **não aplicado**. Reavaliar quando houver versão corrigida.
-
-### 24/11/2026 — Fase 0, tarefa 6
-- Nenhum arquivo do projeto alterado (verificação com script avulso em Playwright, fora do repositório).
-- Cenário: `npm run build` + `vite preview`; primeira visita online; rede desligada; recarga.
-- Resultados (Chromium, viewport 390x844): SW `activated`; precache com 10 arquivos únicos; offline: recarga abre a tela ORIGINS, rota desconhecida cai no `index.html`, manifest e ícone respondem 200, nova aba abre, sem rolagem horizontal.
-- Controle negativo: sem service worker, o mesmo cenário offline falha (`ERR_INTERNET_DISCONNECTED`), logo o teste é válido.
-- Limites: é Chromium, não Safari/iOS. O script não faz parte da suíte do projeto (testes E2E não estão no escopo da Fase 0); o resultado foi registrado aqui.
-- Erros conhecidos: nenhum.
-
-### 24/11/2026 — Fase 0, tarefa 8
-- `README.md` do template substituído por README do ORIGINS (comandos, estrutura, padrões, PWA/offline, hospedagem).
-- Testes: não se aplica (somente documentação).
-- Erros conhecidos: nenhum.
-
-### 24/11/2026 — Fase 0, tarefa 7 (fechamento da fase)
-- Repositório GitHub privado `origins` criado; projeto enviado (`main`). Vercel conectada ao repositório (preset Vite, build `npm run build`, saída `dist`); deploy publicado em HTTPS.
-- Validação feita pelo proprietário: instalação no iPhone pelo Safari ("Adicionar à Tela de Início"); ícone, tela cheia e áreas seguras corretos; app abre offline em modo avião após primeira abertura online.
-- Ambiente local do proprietário: Windows 11, Node v26.13.1, Git 2.56.1; `lint`, `test` e `build` passaram localmente.
-- Critérios de aceite da Fase 0 (ROADMAP): app inicia ✔, build funciona ✔, testes básicos passam ✔, roda em viewport móvel ✔.
-- Pendências conhecidas (não bloqueiam): ícones provisórios; comportamento da troca de versão do service worker no iOS ainda não observado (testar quando houver a 2ª versão publicada); `npm audit` com 4 avisos moderados em ferramentas de build (`workbox-build`); TypeScript fixado em ~6.0 até o `typescript-eslint` suportar o 7; Hobby da Vercel é de uso não comercial (reavaliar se houver monetização).
-- Erros conhecidos: nenhum.
-
-## Próxima tarefa
-Planejar a Fase 1 (Fundação jogável) conforme o ROADMAP, sem código, e aguardar aprovação do proprietário. Escopo da fase: mundo inicial simples e personagem; calendário, tempo híbrido, pausa/velocidade, envelhecimento básico; personalidade inicial; motor de simulação; configurações por mundo; IndexedDB; autosave/manual; múltiplos mundos. Não incluir IA, economia complexa, história global profunda nem centenas de profissões.
-
-## Decisões ainda não especificadas
-Cidade inicial, primeiro conjunto de profissões, provedor/modelo de IA, monetização (fora do escopo atual).
+- 24/11/2026 — Fase 0 concluída (deploy Vercel, instalação e uso offline validados no iPhone). Fase 1 planejada, não iniciada.
