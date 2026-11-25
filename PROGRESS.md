@@ -1,6 +1,6 @@
 # PROGRESS — Estado do projeto
 
-**Fase atual:** Fase 0 — Preparação técnica (em andamento).
+**Fase atual:** Fase 0 concluída. Próxima: Fase 1 — Fundação jogável (a planejar e aprovar antes de iniciar).
 **Última atualização:** 24/11/2026.
 
 ## Decisões consolidadas
@@ -20,14 +20,14 @@
 - Fase 0: desenvolvimento local primeiro; GitHub e deploy depois; validação no iPhone após deploy.
 - Atualização do service worker: versão nova aplicada na próxima abertura do app (provisório, reversível).
 
-## Fase 0 — tarefas
+## Fase 0 — tarefas (todas concluídas)
 - [x] 1. Projeto base Vite + React + TS estrito
 - [x] 2. ESLint e script `lint` (o script `test` vem com o Vitest na tarefa 3)
 - [x] 3. Vitest com teste básico
 - [x] 4. Estrutura mínima e tela inicial mobile-first
 - [x] 5. PWA (manifest, ícones, service worker, meta tags iOS) — falta validar offline (tarefa 6) e instalação no iPhone (tarefa 7)
 - [x] 6. Verificação offline em preview local
-- [ ] 7. Deploy na Vercel + validação no iPhone (depende de GitHub/Vercel)
+- [x] 7. Deploy na Vercel + validação no iPhone
 - [x] 8. README e fechamento da fase (a fase só fecha após a tarefa 7)
 
 ## Registro de execução
@@ -85,8 +85,16 @@
 - Testes: não se aplica (somente documentação).
 - Erros conhecidos: nenhum.
 
+### 24/11/2026 — Fase 0, tarefa 7 (fechamento da fase)
+- Repositório GitHub privado `origins` criado; projeto enviado (`main`). Vercel conectada ao repositório (preset Vite, build `npm run build`, saída `dist`); deploy publicado em HTTPS.
+- Validação feita pelo proprietário: instalação no iPhone pelo Safari ("Adicionar à Tela de Início"); ícone, tela cheia e áreas seguras corretos; app abre offline em modo avião após primeira abertura online.
+- Ambiente local do proprietário: Windows 11, Node v26.13.1, Git 2.56.1; `lint`, `test` e `build` passaram localmente.
+- Critérios de aceite da Fase 0 (ROADMAP): app inicia ✔, build funciona ✔, testes básicos passam ✔, roda em viewport móvel ✔.
+- Pendências conhecidas (não bloqueiam): ícones provisórios; comportamento da troca de versão do service worker no iOS ainda não observado (testar quando houver a 2ª versão publicada); `npm audit` com 4 avisos moderados em ferramentas de build (`workbox-build`); TypeScript fixado em ~6.0 até o `typescript-eslint` suportar o 7; Hobby da Vercel é de uso não comercial (reavaliar se houver monetização).
+- Erros conhecidos: nenhum.
+
 ## Próxima tarefa
-Tarefa 7: criar repositório GitHub, conectar à Vercel, fazer o deploy e validar instalação + offline no iPhone. Ao concluir, a Fase 0 está fechada e a Fase 1 pode ser planejada.
+Planejar a Fase 1 (Fundação jogável) conforme o ROADMAP, sem código, e aguardar aprovação do proprietário. Escopo da fase: mundo inicial simples e personagem; calendário, tempo híbrido, pausa/velocidade, envelhecimento básico; personalidade inicial; motor de simulação; configurações por mundo; IndexedDB; autosave/manual; múltiplos mundos. Não incluir IA, economia complexa, história global profunda nem centenas de profissões.
 
 ## Decisões ainda não especificadas
 Cidade inicial, primeiro conjunto de profissões, provedor/modelo de IA, monetização (fora do escopo atual).
